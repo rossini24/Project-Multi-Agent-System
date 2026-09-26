@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Agent Systems: Organizational Forms</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;500;700&display=swap');
+:root {
+  --navy: #1f2d3d;
+  --navy2: #121d2c;
+  --cyan: #12b5e5;
+  --cyan2: #39d2ff;
+  --text: #102033;
+  --muted: #5c6b7b;
+  --soft: #f1f5f9;
+  --card: #edf2f7;
+  --green: #16a34a;
+  --red: #dc2626;
+  --orange: #f59e0b;
+}
+
+/* =========================
+   REVEAL / TYPOGRAPHY
+   ========================= */
+
+.reveal {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 48px;
+  color: var(--text);
+  background: #fff;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section:not(.center) {
+  padding: 26px 34px;
+  box-sizing: border-box;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--navy2);
+  margin: 0 0 28px;
+  line-height: 0.95;
+}
+
+.reveal h1 { font-size: 2.75em; }
+.reveal h2 { font-size: 1.95em; }
+.reveal h3 { font-size: 1.15em; color: var(--cyan); }
+
+.reveal p,
+.reveal li {
+  font-size: 0.66em;
+  line-height: 1.55;
+  color: #26384d;
+}
+
+.reveal ul { margin-left: 28px; }
+.reveal li { margin: 0 0 14px; }
+.reveal strong { color: var(--cyan); font-weight: 700; }
+
+/* =========================
+   SLIDE VARIANTS
+   ========================= */
+
+.dark {
+  background: linear-gradient(180deg, var(--navy), #1b2838);
+  color: #fff;
+}
+
+.dark h1,
+.dark h2,
+.dark p,
+.dark li {
+  color: #f8fafc;
+}
+
+.dark h3 { color: var(--cyan2); }
+.dark .sub { color: #cbd5e1; }
+.dark .small { color: #94a3b8 !important; }
+
+.center {
+  display: flex !important;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center !important;
+}
+
+.section-line {
+  width: 70px;
+  height: 8px;
+  background: var(--cyan);
+  border-radius: 10px;
+  margin: 0 auto 46px;
+}
+
+.subtitle {
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 0.82em !important;
+  color: var(--cyan) !important;
+  margin-top: 10px;
+}
+
+.small {
+  font-size: 0.50em !important;
+  color: var(--muted);
+}
+
+/* =========================
+   LAYOUT
+   ========================= */
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 42px;
+  align-items: start;
+}
+
+.two-col.equal {
+  grid-template-columns: 1fr 1fr;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 28px;
+}
+
+.card-grid.two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card-grid.four {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+/* =========================
+   CARDS / CONTENT BLOCKS
+   ========================= */
+
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 28px 30px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+  min-height: 160px;
+}
+
+.dark .card {
+  background: #111b2b;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+}
+
+
+.card h3 {
+  margin-bottom: 14px;
+  font-size: 1em;
+}
+
+.card p,
+.card li {
+  font-size: 0.46em;
+}
+
+.icon {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  color: var(--cyan);
+}
+
+.quote {
+  background: #eef2f7;
+  border-left: 8px solid var(--cyan);
+  padding: 28px 34px;
+  border-radius: 10px;
+  font-size: 0.6em;
+  line-height: 1.4;
+  color: #1e293b;
+}
+
+
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin:22px 0 28px 0;
+    }
+
+    .pill{
+      border-radius:999px;
+      padding:12px 20px;
+      background:#e0f2fe;
+      color:#075985;
+      font-weight:700;
+      font-size:0.46em;
+      white-space:nowrap;
+    }
+
+    .dark .pill{
+      background:rgba(18,181,229,.16);
+      color:#d9f6ff;
+      border:1px solid rgba(57,210,255,.22);
+    }
+
+/* =========================
+   VISUALS / DIAGRAMS
+   ========================= */
+
+.visual {
+  min-height: 330px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(18, 181, 229, 0.45), transparent 22%),
+    radial-gradient(circle at 80% 40%, rgba(57, 210, 255, 0.35), transparent 18%),
+    radial-gradient(circle at 50% 90%, rgba(18, 181, 229, 0.25), transparent 24%),
+    linear-gradient(135deg, #0f172a, #1e293b 55%, #0c4a6e);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
+}
+
+.visual::before,
+.visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity: 0.35;
+}
+
+.visual::after {
+  background: none;
+  width: 160px;
+  height: 160px;
+  left: calc(50% - 80px);
+  top: calc(50% - 80px);
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 0 0 38px rgba(18, 181, 229, 0.08),
+    0 0 70px rgba(18, 181, 229, 0.55);
+}
+
+.diagram-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  align-items: stretch;
+  margin-top: 25px;
+}
+
+.pill {
+  border-radius: 999px;
+  padding: 14px 22px;
+  background: #e0f2fe;
+  color: #075985;
+  font-weight: 700;
+  font-size: 0.52em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.flow .step {
+  flex: 1;
+  background: #eef2f7;
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+  min-height: 130px;
+}
+
+.flow .step strong {
+  display: block;
+  font-size: 0.56em;
+  margin-bottom: 8px;
+}
+
+.flow .step span {
+  font-size: 0.38em;
+  color: #526172;
+}
+
+.arrow {
+  font-size: 0.8em;
+  color: var(--cyan);
+}
+
+/* =========================
+   TABLES
+   ========================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.50em;
+  margin-top: 26px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+th {
+  background: #eef2f7;
+  color: #102033;
+  padding: 18px;
+  text-align: left;
+  font-weight: 700;
+}
+
+td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: top;
+}
+
+
+    .dark table{ box-shadow:0 18px 45px rgba(0,0,0,.22); }
+    .dark th{ background:#111b2b; color:#f8fafc; }
+    .dark td{ border-color:rgba(255,255,255,.08); color:#e2e8f0; }
+
+.good { color: var(--green); font-weight: 700; }
+.bad { color: var(--red); font-weight: 700; }
+.warn { color: var(--orange); font-weight: 700; }
+
+/* =========================
+   CODE BLOCKS
+   ========================= */
+
+/*.code-card {
+  --code-bg: #18202b;
+  --code-border: rgba(15, 23, 42, 0.10);
+  --code-text: #e8edf3;
+  --code-muted: #7f8b99;
+
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14);
+  margin-top: 20px;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.30em;
+  color: #9aa6b2;
+}
+
+.code-header .language {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}*/
+
+/* Code blocks */
+    .code-card{
+      --code-bg:#18202b;
+      --code-border:rgba(15,23,42,.10);
+      --code-text:#e8edf3;
+      --code-muted:#7f8b99;
+      background:var(--code-bg);
+      border:1px solid var(--code-border);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 14px 34px rgba(15,23,42,.14);
+      margin-top:18px;
+    }
+
+    .code-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 18px;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      font-size:.30em;
+      color:#9aa6b2;
+    }
+
+    .code-header .language{
+      font-weight:600;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .code-dots{ display:flex; gap:7px; }
+
+    .code-dots span{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:#64748b;
+    }
+
+    .code-card pre{
+      margin:0;
+      padding:20px 24px 24px 24px;
+      background:transparent;
+      box-shadow:none;
+      font-family:"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size:.36em;
+      line-height:1.42;
+      color:var(--code-text);
+      white-space:pre;
+      overflow-x:auto;
+    }
+
+    .code-card code{ font-family:inherit; }
+    .code-card .comment{ color:var(--code-muted); }
+    .code-card .keyword{ color:#39d2ff; font-weight:600; }
+    .code-card .type{ color:#fbbf24; font-weight:600; }
+    .code-card .function{ color:#a3e635; font-weight:600; }
+    .code-card .literal{ color:#fbbf24; }
+    .code-card .operator{ color:#cbd5e1; }
+
+    .dark .code-card{
+      --code-bg:#101927;
+      --code-border:rgba(57,210,255,.16);
+      box-shadow:0 18px 42px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.035);
+    }
+
+    .dark .code-header{ background:rgba(255,255,255,.025); }
+/*
+
+.code-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.code-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #64748b;
+}
+
+.code-card pre {
+  margin: 0;
+  padding: 20px 24px 24px;
+  background: transparent;
+  box-shadow: none;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.37em;
+  line-height: 1.45;
+  color: var(--code-text);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.code-card code {
+  font-family: inherit;
+}
+
+.code-card .comment { color: var(--code-muted); }
+.code-card .keyword { color: var(--cyan2); font-weight: 600; }
+.code-card .function { color: #a3e635; font-weight: 600; }
+.code-card .literal { color: #fbbf24; }
+.code-card .var { color: var(--code-text); }
+.code-card .operator { color: #cbd5e1; }*/
+
+.dark .code-card {
+  --code-bg: #101927;
+  --code-border: rgba(57, 210, 255, 0.16);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.dark .code-header {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .mini{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-left:6px solid var(--cyan);
+      border-radius:10px;
+      padding:18px 20px;
+    }
+
+    .mini h3{ font-size:0.82em; margin-bottom:8px; }
+    .mini p{ font-size:0.40em; }
+
+    .dark .mini{
+      background:#111b2b;
+      border-color:rgba(255,255,255,.08);
+      border-left-color:var(--cyan2);
+    }
+
+/* UML */
+
+    /* UML */
+    .uml-board{
+      display:grid;
+      grid-template-columns:1fr 0.2fr 1fr 0.2fr 1fr;
+      gap:14px;
+      align-items:center;
+      margin-top:18px;
+    }
+
+    .uml-class{
+      border:2px solid #1f2d3d;
+      border-radius:10px;
+      background:#f8fafc;
+      overflow:hidden;
+      box-shadow:0 12px 26px rgba(15,23,42,.08);
+    }
+
+    .dark .uml-class{
+      background:#111b2b;
+      border-color:rgba(57,210,255,.32);
+      box-shadow:0 18px 45px rgba(0,0,0,.22);
+    }
+
+    .uml-title{
+      background:#e0f2fe;
+      color:#075985;
+      padding:10px 14px;
+      font-size:0.44em;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .dark .uml-title{
+      background:rgba(18,181,229,.16);
+      color:#d9f6ff;
+    }
+
+    .uml-body{
+      padding:12px 14px;
+      font-size:0.33em;
+      line-height:1.45;
+      font-family:"SFMono-Regular", Consolas, monospace;
+      color:#26384d;
+    }
+
+    .dark .uml-body{ color:#e2e8f0; }
+
+    .uml-arrow{
+      text-align:center;
+      color:var(--cyan);
+      font-size:0.85em;
+      font-weight:700;
+    }
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.34em !important;
+  color: #94a3b8 !important;
+}
+
+
+/* ===== Enhanced photo + diagram layer ===== */
+.reveal .slides section { min-height: 720px; }
+.kicker{font-family:'Barlow Condensed',Impact,sans-serif;color:var(--cyan);font-size:.58em!important;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px!important;}
+.tight h2{margin-bottom:18px}.tight p{margin-bottom:14px}.tight ul{margin-top:6px}.tight li{margin-bottom:9px}
+.media-split{display:grid;grid-template-columns:.88fr 1.12fr;gap:32px;align-items:start}.media-split.flip{grid-template-columns:1.12fr .88fr}.media-split.even{grid-template-columns:1fr 1fr}
+.photo-card{position:relative;min-height:315px;border-radius:18px;background-size:cover;background-position:center;overflow:hidden;box-shadow:0 20px 48px rgba(15,23,42,.22);border:1px solid rgba(255,255,255,.16)}
+.photo-card.tall{min-height:445px}.photo-card.smallphoto{min-height:230px}.photo-card figcaption{position:absolute;left:18px;right:18px;bottom:14px;color:#fff;font-size:.34em;font-weight:700;text-shadow:0 2px 10px rgba(0,0,0,.55)}
+.photo-card figcaption span{display:block;font-size:.82em;font-weight:500;opacity:.78;margin-top:3px}.dark .photo-card{border-color:rgba(57,210,255,.20)}
+.image-row{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;margin-top:12px}.image-row .photo-card{min-height:250px}
+.diagram-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:12px;box-shadow:0 16px 34px rgba(15,23,42,.08)}
+.dark .diagram-card{background:#0f172a;border-color:rgba(57,210,255,.24);box-shadow:0 18px 45px rgba(0,0,0,.22)}
+.org-diagram{display:block;width:100%;height:auto;max-height:430px}.org-diagram .link{stroke:#12b5e5;stroke-width:8;stroke-linecap:round;opacity:.74}.dark .org-diagram .link{stroke:#39d2ff;opacity:.72}.org-diagram .thin{stroke-width:5}.org-diagram .svg-node{fill:#e0f2fe;stroke:#12b5e5;stroke-width:6}.org-diagram .svg-hub{fill:#0f4c81;stroke:#39d2ff;stroke-width:7}.org-diagram .svg-node2{fill:#eef2f7;stroke:#1f2d3d;stroke-width:5}.dark .org-diagram .svg-node,.dark .org-diagram .svg-node2{fill:#111b2b;stroke:#39d2ff}.org-diagram .label{font-family:'Inter',Arial,sans-serif;font-weight:800;font-size:34px;fill:#075985;text-anchor:middle;dominant-baseline:middle}.org-diagram .smalllabel{font-size:26px}.org-diagram .captiontext{font-size:24px;fill:#5c6b7b;font-weight:600}.dark .org-diagram .label{fill:#d9f6ff}.dark .org-diagram .captiontext{fill:#cbd5e1}.org-diagram .white{fill:#fff}.org-diagram .mutedfill{fill:#edf2f7}.dark .org-diagram .mutedfill{fill:#111b2b}.org-diagram .bid{fill:#fff7ed;stroke:#f59e0b;stroke-width:4}.dark .org-diagram .bid{fill:#2a1d10;stroke:#fbbf24}.org-diagram .ok{stroke:#16a34a}.org-diagram .warnstroke{stroke:#f59e0b}.org-diagram .zone{fill:rgba(18,181,229,.08);stroke:#12b5e5;stroke-width:5}.dark .org-diagram .zone{fill:rgba(57,210,255,.08);stroke:#39d2ff}.diagram-caption{font-size:.42em!important;color:#5c6b7b!important;margin:8px 8px 0!important}.dark .diagram-caption{color:#cbd5e1!important}
+.pattern-strip{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(0deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:46px 46px;opacity:.28;pointer-events:none}.hero-title{position:relative;overflow:hidden}.hero-title:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,29,44,.96) 0%,rgba(18,29,44,.82) 47%,rgba(18,29,44,.24) 100%),url(https://images.ai2.work/heroes/ibm-watsonx-orchestrate-becomes-the-enterprise-agentic-control-plane.webp);background-size:cover;background-position:center;opacity:.95}.hero-title>*{position:relative}.hero-title h1{max-width:870px}.hero-title .subtitle{max-width:780px}.taxonomy{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:16px}.taxon{position:relative;padding:24px 24px 22px;border-radius:16px;background:#111b2b;border:1px solid rgba(57,210,255,.18);min-height:150px;overflow:hidden}.taxon:after{content:'';position:absolute;right:-24px;top:-24px;width:92px;height:92px;border-radius:50%;background:rgba(18,181,229,.12)}.taxon h3{font-size:.82em;margin:0 0 8px}.taxon p{font-size:.40em;margin:0;color:#cbd5e1}.tag{display:inline-block;margin-top:12px;font-size:.30em;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#39d2ff}
+.decision-table td,.decision-table th{font-size:.88em}.takeaway-band{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:24px}.takeaway-band .mini{min-height:112px}.takeaway-band .mini h3{font-size:.70em}.takeaway-band .mini p{font-size:.36em}.credit-note{position:absolute;right:28px;bottom:20px;font-size:.28em!important;color:#94a3b8!important}.dark .quote{background:#111b2b;color:#e2e8f0}.legend{display:flex;gap:18px;align-items:center;margin-top:8px}.legend span{font-size:.36em;color:#5c6b7b}.dark .legend span{color:#cbd5e1}.legend i{display:inline-block;width:26px;height:7px;background:#12b5e5;border-radius:8px;margin-right:7px}.legend i.alt{background:#f59e0b}
+.media-split > .photo-card{min-height:430px}.media-split > div .photo-card{min-height:205px;margin-top:14px}
+@media print{.photo-card{break-inside:avoid}.reveal .slides section{page-break-after:always}}
+
+
+
+/* ===== Viewport safety patch =====
+   Keeps dense teaching slides inside the 1280×720 Reveal canvas. */
+.reveal .slides > section {
+  height: 720px;
+  min-height: 0;
+  max-height: 720px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.reveal .slides > section:not(.center) {
+  padding: 18px 28px;
+}
+.reveal figure { margin: 0; }
+
+/* Compact the content-heavy slides without changing the overall theme. */
+.tight .kicker {
+  font-size: .40em !important;
+  margin: 0 0 6px !important;
+}
+.tight h2 {
+  font-size: 1.55em;
+  line-height: .95;
+  margin: 0 0 12px;
+}
+.tight p,
+.tight li {
+  font-size: .50em;
+  line-height: 1.32;
+}
+.tight p { margin: 0 0 9px; }
+.tight ul {
+  margin: 4px 0 8px 20px;
+}
+.tight li { margin: 0 0 6px; }
+
+.media-split,
+.media-split.flip,
+.media-split.even {
+  gap: 22px;
+  align-items: start;
+  min-height: 0;
+}
+.media-split > * { min-width: 0; min-height: 0; }
+.media-split > div { overflow: visible; }
+
+/* Photos: use the available space rather than forcing a tall column. */
+.photo-card {
+  min-height: 0;
+  margin: 0;
+}
+.media-split > .photo-card {
+  min-height: 0;
+  height: 350px;
+}
+.media-split > div .photo-card {
+  min-height: 0;
+  height: 145px;
+  margin: 9px 0 0;
+}
+.photo-card figcaption {
+  left: 14px;
+  right: 14px;
+  bottom: 10px;
+  font-size: .28em;
+}
+
+/* Diagrams remain large enough to teach from, but no longer dominate height. */
+.diagram-card {
+  padding: 8px;
+  max-height: 390px;
+  overflow: hidden;
+}
+.org-diagram {
+  max-height: 370px;
+}
+.diagram-caption { margin-top: 4px !important; }
+
+/* Supporting blocks */
+.pill-row {
+  gap: 8px;
+  margin: 10px 0 14px;
+}
+.pill {
+  padding: 8px 13px;
+  font-size: .38em;
+}
+.tight .quote {
+  padding: 18px 22px;
+  font-size: .44em;
+  line-height: 1.32;
+}
+.example {
+  margin: 6px 0 0;
+}
+.example p {
+  margin: 0;
+}
+
+/* Practice slide: reserve a safe bottom margin. */
+.takeaway-band {
+  gap: 12px;
+  margin-top: 12px;
+}
+.takeaway-band .mini {
+  min-height: 82px;
+  padding: 12px 14px;
+}
+.takeaway-band .mini h3 {
+  font-size: .60em;
+  margin-bottom: 5px;
+}
+.takeaway-band .mini p { font-size: .31em; }
+.image-row {
+  gap: 16px;
+  margin-top: 12px;
+}
+.image-row .photo-card {
+  min-height: 0;
+  height: 175px;
+}
+.image-row .quote {
+  margin-top: 0 !important;
+}
+
+/* Slightly denser table so the comparison slide always fits. */
+.decision-table {
+  margin-top: 14px;
+  font-size: .44em;
+}
+.decision-table th { padding: 11px 14px; }
+.decision-table td { padding: 9px 14px; }
+
+/* Keep footers and credits safely inside the canvas. */
+.footer { bottom: 18px; }
+.credit-note { right: 22px; bottom: 14px; }
+
+/* Peer-to-peer micro-cards must shrink inside the narrow text column. */
+.tight .mini-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+.tight .mini-grid .mini {
+  min-width: 0;
+  padding: 10px 9px;
+  box-sizing: border-box;
+}
+.tight .mini-grid .mini h3 {
+  font-size: .48em;
+  line-height: 1;
+  margin: 0 0 5px;
+  overflow-wrap: anywhere;
+}
+.tight .mini-grid .mini p {
+  font-size: .30em;
+  line-height: 1.2;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Minimal offline fallback when reveal.js cannot load in a browser preview */
+html,body{margin:0;width:100%;height:100%;background:#fff;}
+.fallback-deck.reveal{width:100vw;height:100vh;overflow:hidden;position:relative;}
+.fallback-deck .slides{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform:translate(-50%,-50%);}
+.fallback-deck .slides section{display:none;position:absolute;inset:0;width:1280px;height:720px;box-sizing:border-box;}
+.fallback-deck .slides section.present{display:block;}
+.fallback-number{position:absolute;right:22px;bottom:14px;font:600 14px Inter,Arial;color:#94a3b8;z-index:50;}
+
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+<section class="center dark hero-title">
+  <div class="pattern-strip"></div>
+  <div class="section-line"></div>
+  <h1>Organizations in Multi-Agent Systems</h1>
+  <p class="subtitle">How agents coordinate, delegate, negotiate, and adapt</p>
+  <p class="small footer">Course module • Multi-Agent Systems</p>
+</section>
+
+<section class="tight">
+  <p class="kicker">Framing</p>
+  <h2>What is an organization?</h2>
+  <div class="media-split">
+    <div>
+      <p>In a multi-agent system, an <strong>organization</strong> defines how autonomous agents relate to each other.</p>
+      <div class="pill-row"><span class="pill">roles</span><span class="pill">authority</span><span class="pill">communication</span><span class="pill">coordination</span><span class="pill">norms</span></div>
+      <div class="quote">The organizational form determines who can decide, who can request help, who can veto, and how the system responds to change.</div>
+    </div>
+    <figure class="photo-card" style="background-image:linear-gradient(180deg,rgba(15,23,42,.05),rgba(15,23,42,.35)),url('https://images.ai2.work/heroes/ibm-watsonx-orchestrate-becomes-the-enterprise-agentic-control-plane.webp')" aria-label="Multi-agent orchestration and monitoring"><figcaption>Multi-agent orchestration and monitoring <span>Photo: AI2Work</span></figcaption></figure>
+  </div>
+</section>
+
+<section class="dark tight">
+  <p class="kicker">Taxonomy</p>
+  <h2>Six common forms</h2>
+  <div class="taxonomy">
+    <div class="taxon"><h3>Centralized</h3><p>One coordinator has global visibility and assigns actions.</p><span class="tag">star</span></div>
+    <div class="taxon"><h3>Hierarchical</h3><p>Decisions flow through strategic, tactical, and operational levels.</p><span class="tag">tree</span></div>
+    <div class="taxon"><h3>Peer-to-peer</h3><p>Agents coordinate locally without a permanent leader.</p><span class="tag">mesh</span></div>
+    <div class="taxon"><h3>Market-based</h3><p>Tasks are allocated through bids, prices, auctions, or contracts.</p><span class="tag">auction</span></div>
+    <div class="taxon"><h3>Coalition / Federation</h3><p>Groups form around temporary shared goals.</p><span class="tag">alliance</span></div>
+    <div class="taxon"><h3>Holonic</h3><p>Nested part-whole structures: autonomous and coordinated at once.</p><span class="tag">nested</span></div>
+  </div>
+</section>
+
+<section class="tight">
+  <p class="kicker">Form 1</p>
+  <h2>Centralized organization</h2>
+  <div class="media-split flip">
+    
+<div class="diagram-card"><svg class="org-diagram" viewBox="0 0 1000 540" role="img" aria-label="Centralized star organization diagram">
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#12b5e5"></path></marker><marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#39d2ff"></path></marker></defs>
+<line class="link" x1="500" y1="270" x2="220" y2="125" marker-end="url(#arrow)"/>
+<line class="link" x1="500" y1="270" x2="780" y2="125" marker-end="url(#arrow)"/>
+<line class="link" x1="500" y1="270" x2="220" y2="405" marker-end="url(#arrow)"/>
+<line class="link" x1="500" y1="270" x2="780" y2="405" marker-end="url(#arrow)"/>
+<circle class="svg-hub" cx="500" cy="270" r="94"/><text class="label white" x="500" y="260">Coordinator</text><text class="label white smalllabel" x="500" y="302">global plan</text>
+<circle class="svg-node" cx="220" cy="125" r="64"/><text class="label" x="220" y="125">A</text>
+<circle class="svg-node" cx="780" cy="125" r="64"/><text class="label" x="780" y="125">B</text>
+<circle class="svg-node" cx="220" cy="405" r="64"/><text class="label" x="220" y="405">C</text>
+<circle class="svg-node" cx="780" cy="405" r="64"/><text class="label" x="780" y="405">D</text>
+<text class="captiontext" x="52" y="510">Every dependency is visible — but every decision also waits on the center.</text>
+</svg></div>
+    <div>
+      <p>One <strong>controller</strong> collects state, optimizes a plan, and sends instructions to agents.</p>
+      <ul><li><strong class="good">Good:</strong> simple global optimization and conflict resolution.</li><li><strong class="bad">Risk:</strong> bottleneck, single point of failure, less autonomy.</li></ul>
+      <div class="example"><p><strong>Example:</strong> a supervisor agent assigns customer-support tickets to billing, technical, legal, and escalation agents.</p></div>
+      <figure class="photo-card" style="background-image:linear-gradient(180deg,rgba(15,23,42,.05),rgba(15,23,42,.35)),url('https://images.ai2.work/heroes/ibm-watsonx-orchestrate-becomes-the-enterprise-agentic-control-plane.webp')" aria-label="Central control-plane metaphor"><figcaption>Central control-plane metaphor <span>Photo: AI2Work</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <p class="kicker">Form 2</p>
+  <h2>Hierarchical organization</h2>
+  <div class="media-split">
+    <div>
+      <p>Agents are arranged in layers. Higher levels set goals; lower levels execute and report back.</p>
+      <ul><li><strong class="good">Good:</strong> scalable delegation and clear accountability.</li><li><strong class="warn">Trade-off:</strong> slower adaptation when information must climb levels.</li></ul>
+      <div class="example"><p><strong>Example:</strong> warehouse robots by zone: global scheduler → zone manager → robot navigation.</p></div>
+      <figure class="photo-card" style="background-image:linear-gradient(180deg,rgba(15,23,42,.05),rgba(15,23,42,.35)),url('https://prakrittyagi.github.io/images/MAPF/cover_multi_robot.jpg')" aria-label="Warehouse robots as operational agents"><figcaption>Warehouse robots as operational agents <span>Photo: Prakrit Tyagi</span></figcaption></figure>
+    </div>
+    
+<div class="diagram-card"><svg class="org-diagram" viewBox="0 0 1000 540" role="img" aria-label="Hierarchical organization diagram">
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#12b5e5"></path></marker><marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#39d2ff"></path></marker></defs>
+<line class="link thin" x1="500" y1="135" x2="315" y2="245" marker-end="url(#arrow)"/>
+<line class="link thin" x1="500" y1="135" x2="685" y2="245" marker-end="url(#arrow)"/>
+<line class="link thin" x1="315" y1="312" x2="170" y2="405" marker-end="url(#arrow)"/>
+<line class="link thin" x1="315" y1="312" x2="360" y2="405" marker-end="url(#arrow)"/>
+<line class="link thin" x1="685" y1="312" x2="640" y2="405" marker-end="url(#arrow)"/>
+<line class="link thin" x1="685" y1="312" x2="830" y2="405" marker-end="url(#arrow)"/>
+<rect class="svg-hub" x="365" y="55" width="270" height="95" rx="24"/><text class="label white" x="500" y="105">Strategic Planner</text>
+<rect class="svg-node" x="205" y="230" width="220" height="90" rx="24"/><text class="label" x="315" y="275">Zone Lead 1</text>
+<rect class="svg-node" x="575" y="230" width="220" height="90" rx="24"/><text class="label" x="685" y="275">Zone Lead 2</text>
+<circle class="svg-node2" cx="170" cy="425" r="53"/><text class="label smalllabel" x="170" y="425">R1</text>
+<circle class="svg-node2" cx="360" cy="425" r="53"/><text class="label smalllabel" x="360" y="425">R2</text>
+<circle class="svg-node2" cx="640" cy="425" r="53"/><text class="label smalllabel" x="640" y="425">R3</text>
+<circle class="svg-node2" cx="830" cy="425" r="53"/><text class="label smalllabel" x="830" y="425">R4</text>
+<text class="captiontext" x="52" y="510">Delegation creates scale: goals descend; status and exceptions ascend.</text>
+</svg></div>
+  </div>
+</section>
+
+<section class="dark tight">
+  <p class="kicker">Form 3</p>
+  <h2>Peer-to-peer / heterarchical organization</h2>
+  <div class="media-split flip">
+    
+<div class="diagram-card"><svg class="org-diagram" viewBox="0 0 1000 540" role="img" aria-label="Peer-to-peer mesh organization diagram">
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#12b5e5"></path></marker><marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#39d2ff"></path></marker></defs>
+<line class="link thin" x1="205" y1="145" x2="430" y2="105"/><line class="link thin" x1="430" y1="105" x2="725" y2="175"/><line class="link thin" x1="725" y1="175" x2="785" y2="380"/><line class="link thin" x1="785" y1="380" x2="485" y2="420"/><line class="link thin" x1="485" y1="420" x2="220" y2="340"/><line class="link thin" x1="220" y1="340" x2="205" y2="145"/><line class="link thin" x1="430" y1="105" x2="485" y2="420"/><line class="link thin" x1="220" y1="340" x2="725" y2="175"/>
+<circle class="svg-node" cx="205" cy="145" r="62"/><text class="label" x="205" y="145">A</text><circle class="svg-node" cx="430" cy="105" r="62"/><text class="label" x="430" y="105">B</text><circle class="svg-node" cx="725" cy="175" r="62"/><text class="label" x="725" y="175">C</text><circle class="svg-node" cx="220" cy="340" r="62"/><text class="label" x="220" y="340">D</text><circle class="svg-node" cx="485" cy="420" r="62"/><text class="label" x="485" y="420">E</text><circle class="svg-node" cx="785" cy="380" r="62"/><text class="label" x="785" y="380">F</text>
+<text class="captiontext" x="52" y="510">Local negotiation replaces command. Robustness comes from redundant paths.</text>
+</svg></div>
+    <div>
+      <p>No permanent leader. Agents negotiate directly and coordinate through local rules.</p>
+      <div class="mini-grid"><div class="mini"><h3>Locality</h3><p>Use neighbor information.</p></div><div class="mini"><h3>Resilience</h3><p>Redundant paths keep the system alive.</p></div><div class="mini"><h3>Emergence</h3><p>Global order arises locally.</p></div></div>
+      <div class="example"><p><strong>Example:</strong> drones mapping a forest fire adjust sectors from nearby drones and battery status.</p></div>
+      <figure class="photo-card" style="background-image:linear-gradient(180deg,rgba(15,23,42,.05),rgba(15,23,42,.35)),url('https://storage.yandexcloud.net/itrussia/uploads/47c5206e-a2f0-49de-ad1d-3c486fe7e699.webp')" aria-label="Distributed drone swarm scenario"><figcaption>Distributed drone swarm scenario <span>Photo: IT Russia</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <p class="kicker">Form 4</p>
+  <h2>Market-based organization</h2>
+  <div class="media-split">
+    <div>
+      <p>Agents compete or negotiate for tasks using <strong>prices, utilities, bids, or contracts</strong>.</p>
+      <div class="flow" style="margin-top:14px"><div class="step"><strong>Announce</strong><span>Task appears</span></div><div class="arrow">→</div><div class="step"><strong>Bid</strong><span>Estimate cost</span></div><div class="arrow">→</div><div class="step"><strong>Award</strong><span>Choose winner</span></div></div>
+      <div class="example"><p><strong>Example:</strong> delivery robots bid for parcels based on distance, battery, load, and deadline.</p></div>
+      <figure class="photo-card" style="background-image:linear-gradient(180deg,rgba(15,23,42,.05),rgba(15,23,42,.35)),url('https://cdn.imweb.me/upload/S20240222d930b90318527/e046d5135e8d4.jpg')" aria-label="Last-mile delivery robot"><figcaption>Last-mile delivery robot <span>Photo: Paper Program</span></figcaption></figure>
+    </div>
+    
+<div class="diagram-card"><svg class="org-diagram" viewBox="0 0 1000 540" role="img" aria-label="Market-based task allocation diagram">
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#12b5e5"></path></marker><marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#39d2ff"></path></marker></defs>
+<line class="link thin warnstroke" x1="500" y1="155" x2="230" y2="330" marker-end="url(#arrow)"/><line class="link thin warnstroke" x1="500" y1="155" x2="500" y2="330" marker-end="url(#arrow)"/><line class="link thin warnstroke" x1="500" y1="155" x2="770" y2="330" marker-end="url(#arrow)"/>
+<rect class="svg-hub" x="360" y="55" width="280" height="110" rx="26"/><text class="label white" x="500" y="98">Task Board</text><text class="label white smalllabel" x="500" y="134">auction</text>
+<rect class="bid" x="100" y="295" width="260" height="100" rx="24"/><text class="label smalllabel" x="230" y="333">Agent A</text><text class="captiontext" text-anchor="middle" x="230" y="370">bid: 12 min</text>
+<rect class="bid ok" x="370" y="295" width="260" height="100" rx="24"/><text class="label smalllabel" x="500" y="333">Agent B</text><text class="captiontext" text-anchor="middle" x="500" y="370">bid: 8 min ✓</text>
+<rect class="bid" x="640" y="295" width="260" height="100" rx="24"/><text class="label smalllabel" x="770" y="333">Agent C</text><text class="captiontext" text-anchor="middle" x="770" y="370">bid: 15 min</text>
+<text class="captiontext" x="52" y="510">Allocation emerges from offers, costs, deadlines, and constraints.</text>
+</svg></div>
+  </div>
+</section>
+
+<section class="dark tight">
+  <p class="kicker">Form 5</p>
+  <h2>Coalition or federated organization</h2>
+  <div class="media-split flip">
+    
+<div class="diagram-card"><svg class="org-diagram" viewBox="0 0 1000 540" role="img" aria-label="Coalition organization diagram">
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#12b5e5"></path></marker><marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#39d2ff"></path></marker></defs>
+<path class="link thin" d="M275 205 C420 75, 580 75, 725 205" fill="none" marker-end="url(#arrow)"/>
+<path class="link thin" d="M735 285 C760 430, 610 465, 510 385" fill="none" marker-end="url(#arrow)"/>
+<path class="link thin" d="M490 385 C360 465, 210 430, 265 285" fill="none" marker-end="url(#arrow)"/>
+<circle class="zone" cx="250" cy="245" r="135"/><circle class="zone" cx="750" cy="245" r="135"/><circle class="zone" cx="500" cy="355" r="135"/>
+<circle class="svg-node" cx="250" cy="245" r="76"/><text class="label" x="250" y="230">Fire</text><text class="label smalllabel" x="250" y="270">team</text>
+<circle class="svg-node" cx="750" cy="245" r="76"/><text class="label" x="750" y="230">Medical</text><text class="label smalllabel" x="750" y="270">team</text>
+<circle class="svg-node" cx="500" cy="355" r="76"/><text class="label" x="500" y="340">Logistics</text><text class="label smalllabel" x="500" y="380">team</text>
+<rect class="bid ok" x="390" y="80" width="220" height="70" rx="18"/><text class="captiontext" text-anchor="middle" x="500" y="123">shared protocol</text>
+<text class="captiontext" x="52" y="510">Independent organizations align temporarily without surrendering local control.</text>
+</svg></div>
+    <div>
+      <p>Separate organizations form temporary alliances to solve a shared task.</p>
+      <ul><li><strong class="good">Good:</strong> local autonomy across departments or platforms.</li><li><strong class="warn">Challenge:</strong> interoperability, trust, protocols, and conflict resolution.</li></ul>
+      <div class="example"><p><strong>Example:</strong> police, hospitals, drones, and logistics agents cooperate during a flood without merging into one central system.</p></div>
+      <figure class="photo-card" style="background-image:linear-gradient(180deg,rgba(15,23,42,.05),rgba(15,23,42,.35)),url('https://examples.tely.ai/content/images/size/w960/format/webp/2025/09/yeuwzc-implement-computer-vision-solutions-for-effective-disaster-response.jpg')" aria-label="Emergency coordination with drones"><figcaption>Emergency coordination with drones <span>Photo: Tely AI Examples</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <p class="kicker">Form 6</p>
+  <h2>Holonic organization</h2>
+  <div class="media-split">
+    <div>
+      <p>A <strong>holon</strong> is simultaneously a whole and a part. Holonic MAS combine autonomy with nested coordination.</p>
+      <div class="pill-row"><span class="pill">factory</span><span class="pill">cell</span><span class="pill">machine</span><span class="pill">tool</span></div>
+      <div class="example"><p><strong>Example:</strong> a product holon negotiates with machine holons; each production cell also acts as a larger holon.</p></div>
+      <figure class="photo-card" style="background-image:linear-gradient(180deg,rgba(15,23,42,.05),rgba(15,23,42,.35)),url('https://cdn2.hubspot.net/hubfs/125873/smart%20factory.jpg')" aria-label="Smart factory automation"><figcaption>Smart factory automation <span>Photo: TRG International</span></figcaption></figure>
+    </div>
+    
+<div class="diagram-card"><svg class="org-diagram" viewBox="0 0 1000 540" role="img" aria-label="Holonic nested organization diagram">
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#12b5e5"></path></marker><marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10" fill="#39d2ff"></path></marker></defs>
+<rect class="zone" x="80" y="50" width="840" height="420" rx="34"/><text class="label" x="500" y="94">Factory Holon</text>
+<rect class="svg-node2" x="145" y="150" width="320" height="245" rx="28"/><text class="label smalllabel" x="305" y="192">Cell Holon A</text>
+<rect class="svg-node2" x="535" y="150" width="320" height="245" rx="28"/><text class="label smalllabel" x="695" y="192">Cell Holon B</text>
+<circle class="svg-node" cx="240" cy="300" r="58"/><text class="label smalllabel" x="240" y="300">M1</text><circle class="svg-node" cx="370" cy="300" r="58"/><text class="label smalllabel" x="370" y="300">M2</text>
+<circle class="svg-node" cx="630" cy="300" r="58"/><text class="label smalllabel" x="630" y="300">M3</text><circle class="svg-node" cx="760" cy="300" r="58"/><text class="label smalllabel" x="760" y="300">M4</text>
+<line class="link thin" x1="465" y1="275" x2="535" y2="275" marker-end="url(#arrow)"/>
+<text class="captiontext" x="52" y="510">Each part is also a whole: machine → cell → factory → supply network.</text>
+</svg></div>
+  </div>
+</section>
+
+<section class="dark tight">
+  <p class="kicker">Comparison</p>
+  <h2>Choosing an organizational form</h2>
+  <table class="decision-table"><thead><tr><th>Situation</th><th>Best fit</th><th>Why</th></tr></thead><tbody>
+    <tr><td>Small team, clear global objective</td><td><span class="good">Centralized</span></td><td>Simple control and easy debugging.</td></tr>
+    <tr><td>Many agents with stable responsibilities</td><td><span class="good">Hierarchical</span></td><td>Delegation and monitoring scale naturally.</td></tr>
+    <tr><td>Dynamic environment, partial information</td><td><span class="good">Peer-to-peer</span></td><td>Robust local adaptation; no single failure point.</td></tr>
+    <tr><td>Uncertain costs or scarce resources</td><td><span class="good">Market-based</span></td><td>Agents reveal preferences through bids.</td></tr>
+    <tr><td>Independent organizations must cooperate</td><td><span class="good">Coalition</span></td><td>Shared action without loss of autonomy.</td></tr>
+    <tr><td>Nested physical or organizational systems</td><td><span class="good">Holonic</span></td><td>Autonomy at every level of aggregation.</td></tr>
+  </tbody></table>
+</section>
+
+<section class="tight">
+  <p class="kicker">Practice</p>
+  <h2>Design questions</h2>
+  <div class="takeaway-band">
+    <div class="mini"><span class="big-number">1</span><h3>Where is knowledge?</h3><p>Global, local, private, or distributed?</p></div>
+    <div class="mini"><span class="big-number">2</span><h3>Who can decide?</h3><p>Leader, team lead, market winner, or all peers?</p></div>
+    <div class="mini"><span class="big-number">3</span><h3>What can fail?</h3><p>Coordinator, links, incentives, or trust?</p></div>
+    <div class="mini"><span class="big-number">4</span><h3>How does it adapt?</h3><p>Replanning, negotiation, self-organization, coalition change?</p></div>
+  </div>
+  <div class="image-row">
+    <div class="quote" style="margin-top:22px;">Example: consider an organization for autonomous taxis during a city marathon. Which trade-offs among speed, safety, autonomy, and resilience ?</div>
+    <figure class="photo-card" style="background-image:linear-gradient(180deg,rgba(15,23,42,.05),rgba(15,23,42,.35)),url('https://cdn.imweb.me/upload/S20240222d930b90318527/e046d5135e8d4.jpg')" aria-label="Urban autonomous mobility context"><figcaption>Urban autonomous mobility context <span>Photo: Paper Program</span></figcaption></figure>
+  </div>
+</section>
+
+<section class="center dark">
+  <div class="section-line"></div>
+  <h2>Key takeaway</h2>
+  <p>Organizational structure is a coordination mechanism.</p>
+  <p class="subtitle">Pick the form that matches information, autonomy, uncertainty, and failure tolerance.</p>
+  <p class="credit-note">Image credits: AI2Work, Prakrit Tyagi, IT Russia, Paper Program, Tely AI Examples, TRG International.</p>
+</section>
+
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+(function(){
+  function fallback(){
+    const deck = document.querySelector('.reveal');
+    const sections = Array.from(document.querySelectorAll('.slides > section'));
+    deck.classList.add('fallback-deck');
+    const num = document.createElement('div'); num.className = 'fallback-number'; document.body.appendChild(num);
+    function idx(){ const m = location.hash.match(/#\/(\d+)/); return Math.max(0, Math.min(sections.length-1, m ? parseInt(m[1],10) : 0)); }
+    function show(i){ sections.forEach((s,n)=>s.classList.toggle('present', n===i)); num.textContent = (i+1)+' / '+sections.length; }
+    function go(i){ location.hash = '#/'+Math.max(0, Math.min(sections.length-1, i)); show(idx()); }
+    window.addEventListener('hashchange', ()=>show(idx()));
+    document.addEventListener('keydown', e => { const i=idx(); if(['ArrowRight','PageDown',' '].includes(e.key)) go(i+1); if(['ArrowLeft','PageUp'].includes(e.key)) go(i-1); });
+    show(idx());
+  }
+  if (window.Reveal) {
+    Reveal.initialize({ hash: true, slideNumber: true, transition: 'slide', width: 1280, height: 720, margin: 0.04 });
+  } else { fallback(); }
+})();
+</script>
+</body>
+</html>
