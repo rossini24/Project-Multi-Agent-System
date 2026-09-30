@@ -1,0 +1,5 @@
+doctorName,specialization,workingDays,startTime,endTime,slotMinutes
+Dr. Bennett,General medicine,MON|TUE|WED|THU|FRI,09:00,17:00,30
+Dr. Martin,Cardiology,TUE|THU,09:00,13:00,30
+Dr. Cole,Endocrinology,MON|WED,14:00,18:00,30
+Dr. Reynolds,Dermatology,FRI,09:00,17:00,30

@@ -1,0 +1,9 @@
+id,doctorName,date,time,patientName,patientEmail,status
+1,Dr. Bennett,2026-10-06,09:00,Ellen Conti,ellen.conti@gmail.com,booked
+2,Dr. Bennett,2026-10-06,09:30,Anna Ross,anna.ross@gmail.com,booked
+3,Dr. Martin,2026-10-06,09:00,Mark Conti,mark.conti88@outlook.com,booked
+4,Dr. Martin,2026-10-08,09:30,Paul Villa,paul.villa71@gmail.com,booked
+5,Dr. Cole,2026-10-07,14:00,Diane Cole,diane.cole@yahoo.com,booked
+6,Dr. Reynolds,2026-10-09,10:00,Henry Ross,henry.ross44@gmail.com,booked
+7,Dr. Bennett,2026-10-13,11:00,Sarah Bennett,sarah.bennett@icloud.com,booked
+8,Dr. Martin,2026-10-13,09:00,Luke Ferri,luke.ferri@gmail.com,booked

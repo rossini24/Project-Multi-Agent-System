@@ -1,3 +1,5 @@
+package model;
+
 public class Email {
     private String sender;
     private String subject;
@@ -9,15 +11,7 @@ public class Email {
         this.body = body;
     }
 
-    public String getSender() {
-        return sender;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public String getBody() {
-        return body;
-    }
+    public String getSender() { return sender; }
+    public String getSubject() { return subject; }
+    public String getBody() { return body; }
 }

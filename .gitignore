@@ -1,2 +1,4 @@
 *.pdf
 *.class
+src/out/
+data/conversation_history.txt
